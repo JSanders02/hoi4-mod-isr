@@ -42,7 +42,7 @@ ideas = {
 		ISR_expansion_ready = {
 			
 			modifier = {
-				conscription = 0.05
+				conscription_factor = 0.05
 				justify_war_goal_time = -0.75
 				generate_wargoal_tension = -0.2
 			}
@@ -103,7 +103,8 @@ ideas = {
 		}
 		
 		ISR_worker_rights = {
-			
+			picture = eng_spirit_of_the_revolution
+				
 			modifier = {
 				resistance_damage_to_garrison = -0.5
 				resistance_target = -0.25
