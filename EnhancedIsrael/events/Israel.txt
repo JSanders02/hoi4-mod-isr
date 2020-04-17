@@ -180,7 +180,11 @@ country_event = {
 	option = {
 		name = israel.7.b
 		custom_effect_tooltip = ISR_revolt_warning
-		set_country_flag = ISR_revolt_ignored
+		hidden_effect = {
+			ISR = {
+				country_event = { days = 50 id = israel.8 }
+			}
+		}
 	}
 }
 
@@ -190,16 +194,9 @@ country_event = {
 	desc = israel.8.d
 	picture = GFX_report_event_ger_civil_war
 	
-	trigger = {
-		tag = ISR
-		has_country_flag = ISR_revolt_ignored
-	}
+	is_triggered_only = yes
 	
 	fire_only_once = yes
-	
-	mean_time_to_happen = {
-		days = 50
-	}
 	
 	option = {
 		name = israel.8.a
@@ -272,7 +269,7 @@ country_event = {
 		
 		ISR = {
 			remove_ideas = {
-				ISR_arabs_suppressed
+				ISR_arabs_angry
 			}
 			add_ideas = {
 				ISR_arabs_revolt
