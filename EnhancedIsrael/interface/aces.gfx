@@ -61,6 +61,10 @@ spriteTypes = {
 		texturefile = "gfx/aces/western_european_ace_f_0.dds"
 	}
 	
+	spriteType = {
+		name = "GFX_western_european_2d_ace_f_1"
+		texturefile = "gfx/aces/western_european_ace_f_1.dds"
+	}
 	
 	##########################
 	## commonwealth_2d ##
