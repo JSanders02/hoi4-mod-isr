@@ -1,0 +1,32 @@
+leader_traits = {
+
+	zionist_figurehead = {
+		random = no
+		sprite = 13
+		zionism_drift = 0.1
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	revision_zionist_figurehead = {
+		random = no
+		sprite = 13
+		revision_zionism_drift = 0.1
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	non_zionist_figurehead = {
+		random = no
+		sprite = 13
+		non_zionism_drift = 0.1
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

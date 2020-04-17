@@ -1,0 +1,30 @@
+
+state={
+	id=797
+	name="Gaza Strip"
+	manpower = 908000
+	
+	state_category = rural
+
+	history={
+		owner = PAL
+		buildings = {
+			infrastructure = 2
+			arms_factory = 0
+			industrial_complex = 1
+			13234 = {
+				naval_base = 1
+			}
+		}
+		victory_points = {
+			13234 5
+		}
+		
+		add_core_of = ISR
+		add_core_of = PAL
+	}
+
+	provinces={
+		13234
+	}
+}

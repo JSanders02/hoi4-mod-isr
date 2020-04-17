@@ -1,0 +1,115 @@
+ISR_decisions = {
+	ISR_infiltrate_PAL = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			has_completed_focus = ISR_increase_PAL_influence
+			NOT = {
+				PAL = {
+					has_opinion_modifier = absolute_influence
+				}	
+			}
+		}
+		cost = 50
+		available = {
+			has_equipment = {
+				support_equipment > 149
+			}
+		}
+		days_remove = 70
+		remove_effect = {
+			country_event = {
+				id = israel.2
+				days = 0
+			}
+			PAL = {
+				if = {
+					limit = {
+						has_opinion_modifier = low_influence
+					}
+					remove_opinion_modifier = {
+						target = ISR
+						modifier = low_influence
+					}
+					add_opinion_modifier = {
+						target = ISR
+						modifier = medium_influence
+					}
+				}
+				else_if = {
+					limit = {
+						has_opinion_modifier = medium_influence
+					}
+					remove_opinion_modifier = {
+						target = ISR
+						modifier = medium_influence
+					}
+					add_opinion_modifier = {
+						target = ISR
+						modifier = high_influence
+					}
+				}
+				else_if = {
+					limit = {
+						has_opinion_modifier = high_influence
+					}
+					remove_opinion_modifier = {
+						target = ISR
+						modifier = high_influence
+					}
+					add_opinion_modifier = {
+						target = ISR
+						modifier = absolute_influence
+					}
+				}
+			}
+		}
+	}
+	
+	ISR_border_conflict_jordan_start = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_completed_focus = ISR_expand_borders_conflict
+			NOT = {
+				has_full_control_of_state = 455
+			}
+		}
+		
+		available = {
+			455 = {
+				is_border_conflict = no
+			}
+			454 = {
+				is_border_conflict = no
+			}
+		}	
+		
+		highlight_states = {
+			state = 455
+		}
+		
+		cost = 50
+		
+		days_remove = 50
+		
+		remove_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 454
+					num_provinces = 4
+					on_win = wtt_border_conflict_won_attacker.1
+					on_lose = wtt_border_conflict_lost_attacker.1
+					on_cancel = wtt_border_conflict_canceled_attacker.1
+				}
+				
+				defender = {
+					state = 455
+					num_provinces = 4
+					on_win = wtt_border_conflict_won_defender.1
+					on_lose = wtt_border_conflict_lost_defender.1
+					on_cancel = wtt_border_conflict_canceled_defender.1
+				}
+			}
+		}
+	}
+}

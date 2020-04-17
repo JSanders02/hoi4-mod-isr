@@ -1,0 +1,68 @@
+capital = 454
+
+oob = "ISR_1936"
+
+# Starting tech
+set_technology = {
+	tech_support = 1		
+	tech_engineers = 1
+	tech_mountaineers = 1
+	early_fighter = 1
+	gwtank = 1
+	basic_light_tank = 1
+	infantry_weapons = 1
+	infantry_weapons1 = 1
+	interwar_antitank = 1
+	gw_artillery = 1
+	interwar_artillery = 1
+	interwar_antiair = 1
+	motorised_infantry = 1
+}
+
+set_convoys = 75
+
+set_politics = {
+	ruling_party = zionism
+	last_election = "1936.1.1"
+	elections_allowed = no
+}
+set_popularities = {
+	zionism = 33
+	revision_zionism = 33
+	non_zionism = 34
+}
+
+create_country_leader = {
+	name = "David Ben-Gurion"
+	desc = ""
+	picture = "portrait_isr_david_ben_gurion.dds"
+	ideology = regular_zionism
+	traits = {
+		#
+	}
+}
+
+create_country_leader = {
+	name = "Yitzhak Shamir"
+	desc = ""
+	picture = "portrait_isr_yitzhak_shamir.dds"
+	ideology = war_zionism
+	traits = {
+		#
+	}
+}
+
+create_country_leader = {
+	name = "Shmuel Mikunis"
+	desc = ""
+	picture = "portrait_isr_shmuel_mikunis.dds"
+	ideology = not_zionism
+	traits = {
+		#
+	}
+}
+
+add_ideas = {
+	ISR_arabs_angry
+	ISR_our_own_land
+}

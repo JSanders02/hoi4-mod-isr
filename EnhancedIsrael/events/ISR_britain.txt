@@ -1,0 +1,44 @@
+add_namespace = ISR_britain
+
+country_event = {
+	id = ISR_britain.1
+	title = ISR_britain.1.t
+	desc = ISR_britain.1.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = { # Accept
+		name = ISR_britain.1.a
+		ai_chance = {
+			base = 70
+			modifier = {
+				is_in_faction_with = ISR
+				add = 999999
+			}
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.10 }
+		}
+	}
+	
+	option = { # Refuse
+		name = ISR_britain.1.b
+		ai_chance = {
+			base = 29
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.11 }
+		}
+	}
+	
+	option = {
+		name = ISR_britain.c
+		ai_chance = {
+			base = 1
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.12 }
+		}
+	}
+}

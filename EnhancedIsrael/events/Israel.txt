@@ -1,0 +1,366 @@
+add_namespace = israel
+
+# Elections of '36
+country_event = {
+	id = israel.1
+	title = israel.1.t
+	desc = israel.1.d
+	picture = GFX_report_event_israel_elections
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = israel.1.a
+		ai_chance = {
+			base = 25
+		}
+		set_politics = {
+			ruling_party = revision_zionism
+		}
+		add_ideas = {
+			ISR_zionists_happy
+		}
+	}
+	
+	option = {
+		name = israel.1.b
+		ai_chance = {
+			base = 0
+		}
+		set_politics = {
+			ruling_party = non_zionism
+		}
+		remove_ideas = {
+			ISR_arabs_angry
+		}
+	}
+	
+	option = {
+		name = israel.1.c
+		ai_chance = {
+			base = 75
+		}
+		set_politics = {
+			ruling_party = zionism
+		}
+	}
+}
+
+# Infiltrated PAL
+country_event = {
+	id = israel.2
+	title = israel.2.t
+	desc = israel.2.d
+	picture = GFX_report_event_communist_leader
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = israel.2.a
+	}
+}
+
+# Lebanon refuses
+country_event = {
+	id = israel.3
+	title = israel.3.t
+	desc = israel.3.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = israel.3.a
+		create_wargoal = {
+			type = annex_everything
+			target = LEB
+		}
+	}
+}
+
+# Lebanon accepts
+country_event = {
+	id = israel.4
+	title = israel.4.t
+	desc = israel.4.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = israel.4.a
+		annex_country = {
+			target = LEB
+			transfer_troops = no
+		}
+	}
+}
+
+# Syria refuses
+country_event = {
+	id = israel.5
+	title = israel.5.t
+	desc = israel.5.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = israel.5.a
+		create_wargoal = {
+			type = annex_everything
+			target = SYR
+		}
+	}
+}
+
+# Syria accepts
+country_event = {
+	id = israel.6
+	title = israel.6.t
+	desc = israel.6.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = israel.6.a
+		ISR = {
+			set_state_owner = 554
+			set_state_controller = 554
+		}
+	}
+}
+
+# Arab revolt - start
+country_event = {
+	id = israel.7
+	title = israel.7.t
+	desc = israel.7.d
+	picture = GFX_report_event_spr_anarchist_uprising
+	
+	trigger = {
+		tag = ISR
+		AND = {
+			OR = {
+				has_full_control_of_state = 797
+				has_full_control_of_state = 798
+				PAL = {
+					is_puppet_of = ISR
+				}
+			}
+			OR = {
+				has_full_control_of_state = 553
+				has_full_control_of_state = 554
+			}
+		}
+	}	
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1000
+		modifier = {
+			factor = 0.001
+			NOT = {
+				country_exists = IRQ
+			}
+		}
+	}
+	
+	option = {
+		name = israel.7.a
+		ISR = {
+			remove_ideas = ISR_arabs_angry
+			add_ideas = ISR_arabs_suppressed
+		}
+	}
+	
+	option = {
+		name = israel.7.b
+		custom_effect_tooltip = ISR_revolt_warning
+		set_country_flag = ISR_revolt_ignored
+	}
+}
+
+country_event = {
+	id = israel.8
+	title = israel.8.t
+	desc = israel.8.d
+	picture = GFX_report_event_ger_civil_war
+	
+	trigger = {
+		tag = ISR
+		has_country_flag = ISR_revolt_ignored
+	}
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 50
+	}
+	
+	option = {
+		name = israel.8.a
+		set_country_flag = ISR_arab_revolt_ignited
+		ARA = {
+			IF = {
+				limit = {
+					ISR = {
+						OR = {
+							has_full_control_of_state = 553
+							has_full_control_of_state = 554
+							has_full_control_of_state = 677
+							has_full_control_of_state = 680
+						}
+					}	
+				}
+				set_state_owner = 677
+				set_state_owner = 680
+				set_state_controller = 677
+				set_state_controller = 680
+				add_state_core = 677
+				add_state_core = 680
+			}
+			IF = {
+				limit = {
+					ISR = {
+						OR = {
+							has_full_control_of_state = 291
+							has_full_control_of_state = 675
+							has_full_control_of_state = 676
+						}
+					}	
+				}
+				set_state_owner = 291
+				set_state_owner = 656
+				set_state_owner = 675
+				set_state_owner = 676
+				set_state_controller = 291
+				set_state_controller = 656
+				set_state_controller = 675
+				set_state_controller = 676
+				add_state_core = 291
+				add_state_core = 656
+				add_state_core = 675
+				add_state_core = 676
+			}
+			declare_war_on = {
+				target = ISR
+				type = civil_war
+			}
+			add_ideas = {
+				ISR_arabs_happy
+			}
+			hidden_effect = {
+				IF = {
+					limit = {
+						has_full_control_of_state = 291
+					}
+					load_oob = "ARA_revolt_irq"
+				}
+				
+				IF = {
+					limit = {
+						has_full_control_of_state = 677
+					}
+					load_oob = "ARA_revolt_syr"
+				}
+			}
+		}
+		
+		ISR = {
+			remove_ideas = {
+				ISR_arabs_suppressed
+			}
+			add_ideas = {
+				ISR_arabs_revolt
+			}
+		}
+	}
+}
+
+country_event = {
+	id = israel.9
+	title = israel.9.t
+	desc = israel.9.d
+	picture = GFX_report_event_communists_cheer
+	
+	trigger = {
+		tag = ISR
+		has_country_flag = ISR_arab_revolt_ignited
+		NOT = {
+			has_war_with = ARA
+			has_capitulated = yes
+		}
+	}
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	option = {
+		name = israel.9.a
+		add_ideas = {
+			ISR_reinvigorate_nation
+		}
+	}
+}
+
+# Request Suez - Britain says yes
+country_event = {
+	id = israel.10
+	title = israel.10.t
+	desc = israel.10.d
+	picture = GFX_report_event_communists_cheer
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = israel.10.a
+		ISR = {
+			set_state_owner = 453
+			set_state_controller = 453
+		}
+	}
+}
+
+# Request Suez - Britain says no
+country_event = {
+	id = israel.11
+	title = israel.11.t
+	desc = israel.11.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = israel.11.a
+	}
+}
+
+# Request Suez - Britain says annex all
+country_event = {
+	id = israel.12
+	title = israel.12.t
+	desc = israel.12.d
+	picture = GFX_report_event_communists_cheer
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = israel.12.a
+		ISR = {
+			annex_country = {
+				target = EGY
+				transfer_troops = no
+			}
+		}
+	}
+}

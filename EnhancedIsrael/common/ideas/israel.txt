@@ -1,0 +1,503 @@
+ideas = {
+	country = {
+	
+		ISR_women_in_idf = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = generic_manpower_bonus
+			
+			modifier = {
+				conscription_factor = 0.1
+			}
+		}
+	
+		ISR_army_reform = {
+			picture = generic_reserve_divisions
+			
+			modifier = {
+				army_org_factor = 0.05
+				training_time_factor = -0.05
+				army_morale_factor = 0.05
+			}
+		}
+	
+		ISR_our_own_land = {
+			
+			modifier = {
+				stability_factor = 0.10
+				army_core_attack_factor = 0.2
+				army_core_defence_factor = 0.2
+			}
+		}
+	
+		ISR_expansion_ready = {
+			
+			modifier = {
+				conscription = 0.05
+				justify_war_goal_time = -0.75
+				generate_wargoal_tension = -0.2
+			}
+		}
+		
+		ISR_arabs_happy = {
+			
+			modifier = {
+				conscription = 0.05
+				research_speed_factor = 0.05
+				production_speed_buildings_factor = 0.1
+			}
+		}
+		
+		ISR_arabs_angry = {
+			
+			modifier = {
+				resistance_target = 0.05
+				conscription_factor = -0.05
+				research_speed_factor = -0.05
+				production_speed_buildings_factor = -0.1
+			}
+		}
+		
+		ISR_arabs_suppressed = {
+			
+			modifier = {
+				resistance_target = 0.02
+				conscription_factor = -0.1
+				research_speed_factor = -0.05
+				production_speed_buildings_factor = -0.1
+			}
+		}
+		
+		ISR_arabs_revolt = {
+			
+			modifier = {
+				resistance_target = 0.5
+				conscription_factor = -0.1
+				research_speed_factor = -0.15
+				production_speed_buildings_factor = -0.5
+			}
+		}
+		
+		ISR_zionists_happy = {
+			
+			modifier = {
+				research_speed_factor = 0.1
+			}
+		}
+		
+		ISR_zionists_angry = {
+			
+			modifier = {
+				research_speed_factor = -0.05
+				
+			}
+		}
+		
+		ISR_worker_rights = {
+			
+			modifier = {
+				resistance_damage_to_garrison = -0.5
+				resistance_target = -0.25
+				stability_weekly = 0.01
+				production_speed_buildings_factor = -0.2
+			}
+		}
+		
+		ISR_USA_industry_investment = {
+			picture = man_five_year_plan_industry
+			modifier = {
+				production_speed_buildings_factor = 0.05
+			}
+		}
+		
+		ISR_reinvigorate_nation = {
+			
+			modifier = {
+				conscription_factor = 0.25
+				research_speed_factor = 0.05
+				production_speed_buildings_factor = 0.1
+			}
+		}
+		
+		ISR_firepower = {
+			picture = generic_artillery_regiments
+			allowed = {
+				original_tag = ISR
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			equipment_bonus = {
+				artillery_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+
+			modifier = {
+				
+			}
+		}
+		
+		ISR_fortification_focus = {
+			allowed = {
+				original_tag = ISR
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			modifier = {
+				production_speed_bunker_factor = 0.1
+				production_speed_coastal_bunker_factor = 0.1
+			}
+		}
+		
+		ISR_motorized_focus = {
+			picture = FRA_motorized_focus
+			allowed = {
+				original_tag = ISR
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				motorized_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+		
+		ISR_infantry_focus = {
+			picture = generic_infantry_bonus
+			allowed = {
+				original_tag = ISR
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_infantry_bonus
+			
+			removal_cost = -1
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+		
+		ISR_air_dominance = {
+			picture = generic_air_bonus
+			allowed = {
+				original_tag = ISR
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			equipment_bonus = {
+				fighter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+
+			modifier = {
+				
+			}
+		}
+		
+		ISR_flying_artillery = {
+			picture = combined_bomber_offensive
+			allowed = {
+				original_tag = ISR
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			equipment_bonus = {
+				tac_bomber_equipment = {
+					air_ground_attack = 0.15
+					instant = yes
+				}
+				CAS_equipment = {
+					air_ground_attack = 0.15
+					instant = yes
+				}
+			}
+
+			modifier = {
+				
+			}
+		}
+		
+		ISR_expand_the_marines = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = generic_naval_manufacturer_1
+			
+			modifier = {
+				special_forces_cap = 0.02
+			}
+		}
+	}
+	
+	political_advisor = {	
+		ISR_chaim_weizmann = {			
+			picture = dudley_pound
+				
+			allowed = {
+				original_tag = ISR
+			}
+				
+			available = {
+				has_government = zionism
+				has_completed_focus = ISR_elections_1936
+			}
+				
+			traits = { 
+				zionist_figurehead
+				silent_workhorse
+			}
+		}
+		
+		ISR_menachem_begin = {
+			picture = FRA_vincent_auriol
+				
+			allowed = {
+				original_tag = ISR
+			}
+				
+			available = {
+				has_government = revision_zionism
+				has_completed_focus = ISR_elections_1936
+			}
+				
+			traits = { 
+				revision_zionist_figurehead
+				silent_workhorse
+			}
+		}
+		
+		ISR_tawfik_toubi = {
+			picture = generic_political_advisor_arab_3
+				
+			allowed = {
+				original_tag = ISR
+			}
+				
+			available = {
+				has_government = non_zionism
+				has_completed_focus = ISR_elections_1936
+			}
+			
+			traits = { 
+				non_zionist_figurehead
+				silent_workhorse
+			}
+		}
+	}	
+	
+	theorist = {
+		ISR_israel_tal = {
+			ledger = army
+			
+			picture = generic_army_europe_4
+						
+			allowed = {
+				original_tag = ISR
+			}
+			available = {
+				has_completed_focus = ISR_battle_of_maneuver
+			}
+			
+			cost = 75
+						
+			research_bonus = {
+				land_doctrine = 0.10
+			}
+			
+			traits = { blitzkrieg_theorist }
+
+			ai_will_do = {
+				factor = 1
+			}
+
+		}
+	}
+	
+	army_chief = {
+		
+		
+		ISR_yaakov_dori = {
+				
+			picture = wolfram_von_richthofen
+			
+			allowed = {
+				original_tag = ISR
+			}
+			available = {
+				has_completed_focus = ISR_aggressive_focus
+			}
+
+			cost = 50
+			
+			traits = { army_chief_offensive_2 }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		
+		ISR_moshe_dayan = {
+				
+			picture = dwight_eisenhower
+			
+			allowed = {
+				original_tag = ISR
+			}
+			available = {
+				has_completed_focus = ISR_defensive_focus
+			}
+
+			cost = 50
+			
+			traits = { army_chief_defensive_2 }
+			
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	
+	tank_manufacturer = {
+		ISR_sabra = {
+		
+			picture = generic_tank_manufacturer_3
+
+			available = {
+				has_completed_focus = ISR_infantry_tanks
+			}
+						
+			allowed = {
+				original_tag = ISR
+			}
+						
+			research_bonus = {
+				armor = 0.15
+			}
+			
+
+			traits = { infantry_tank_manufacturer }
+		}
+	}
+	
+	materiel_manufacturer = {
+			
+		designer = yes
+		
+		ISR_IWI = {
+			
+			allowed = {
+				original_tag = ISR
+			}
+			
+			available = {
+				has_completed_focus = ISR_Vigilant_and_Always_Ready
+			}
+			
+			traits = { infantry_equipment_manufacturer }
+			
+			modifier = {
+				army_infantry_attack_factor = 0.08	
+			}
+			
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+	}
+	
+	economy = {
+		law = yes
+		ISR_collectivised_society = {
+
+			picture = SPR_collectivized_society		
+			
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+		
+			modifier = {
+				consumer_goods_factor = 0.15
+				production_speed_industrial_complex_factor = 0.15
+				production_speed_arms_factory_factor = 0.3
+				conversion_cost_civ_to_mil_factor= -0.3
+				conversion_cost_mil_to_civ_factor = -0.3
+				global_building_slots_factor = 0.1
+				industry_free_repair_factor = 0.5
+				industrial_capacity_factory = 0.7
+				industrial_capacity_dockyard = 0.7
+				research_speed_factor = -0.1
+				line_change_production_efficiency_factor = 0.1
+			}
+			
+			allowed_to_remove = {
+				always = no
+			}
+			
+			cancel_if_invalid = no
+		}
+	}
+}

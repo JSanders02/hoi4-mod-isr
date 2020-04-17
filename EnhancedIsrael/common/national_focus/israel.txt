@@ -1,0 +1,2507 @@
+focus_tree = {
+	id = israeli_focus
+	
+	country = {
+		base = 0
+		
+		modifier = {
+			add = 10
+			tag = ISR
+		}
+	}
+	
+	default = no
+	
+	continuous_focus_position = { x = 50 y = 2500 }
+	
+	focus = {
+		id = ISR_elections_1936
+		icon = GFX_focus_generic_treaty
+		x = 20
+		y = 0
+		cost = 5
+		completion_reward = {
+			country_event = {
+				id = israel.1
+				days = 0
+			}
+		}
+	}
+	
+	## Non-Zionist Path
+	
+	focus = {
+		id = ISR_PAL_friendship
+		icon = GFX_focus_ISR_PAL_friendship
+		prerequisite = { focus = ISR_elections_1936 }
+		available = {
+			has_government = non_zionism
+		}
+		relative_position_id = ISR_elections_1936
+		y = 1
+		cost = 5
+		completion_reward = {
+			PAL = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = offered_support
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_strengthen_PAL_relations
+		icon = GFX_focus_ISR_strengthen_PAL_relations
+		prerequisite = { focus = ISR_PAL_friendship }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+			}
+			
+		}
+		relative_position_id = ISR_PAL_friendship
+		y = 1
+		x = -2
+		cost = 10
+		completion_reward = {
+			add_ideas = ISR_arabs_happy
+			add_ideas = ISR_zionists_angry
+			give_guarantee = PAL
+			ISR = {
+				remove_state_core = 798
+				remove_state_core = 797
+			}
+			PAL = {
+				remove_state_core = 454
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_PAL_faction
+		icon = GFX_focus_ISR_PAL_friendship
+		prerequisite = { focus = ISR_strengthen_PAL_relations }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+				has_opinion = {
+					target = ISR
+					value > 49
+				}
+			}	
+		}
+		relative_position_id = ISR_strengthen_PAL_relations
+		y = 1
+		cost = 10
+		completion_reward = {
+			PAL = {
+				add_ai_strategy = {
+					type = alliance
+					id = ISR
+					value = 200
+				}
+			}
+			create_faction = "Arab-Israeli Co-operation Pact"
+			ISR = {
+				add_to_faction = PAL
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_invest_PAL_infrastructure
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ISR_PAL_faction }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+			}
+		}
+		relative_position_id = ISR_PAL_faction
+		y = 1
+		cost = 10
+		completion_reward = {
+			798 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			797 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+	
+	focus = {
+		id = ISR_invest_PAL_civ
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ISR_invest_PAL_infrastructure }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+			}
+		}
+		relative_position_id = ISR_invest_PAL_infrastructure
+		y = 1
+		cost = 10
+		completion_reward = {
+			798 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			797 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_invest_PAL_mil
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ISR_invest_PAL_civ }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+			}
+		}
+		relative_position_id = ISR_invest_PAL_civ
+		y = 1
+		cost = 10
+		completion_reward = {
+			798 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			797 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_increase_PAL_influence
+		icon = GFX_goal_generic_position_armies
+		prerequisite = { focus = ISR_invest_PAL_mil }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+			}
+		}
+		relative_position_id = ISR_invest_PAL_mil
+		y = 1
+		cost = 10
+		completion_reward = {
+			PAL = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = low_influence
+				}
+			}
+			unlock_decision_tooltip = { decision = ISR_infiltrate_PAL }
+		}
+	}
+	
+	focus = {
+		id = ISR_offer_PAL_subjugation
+		icon = GFX_focus_ISR_PAL_deal
+		prerequisite = { focus = ISR_increase_PAL_influence }
+		available = {
+			country_exists = PAL
+			PAL = {
+				is_subject = no
+				has_opinion_modifier = absolute_influence
+			}
+		}
+		relative_position_id = ISR_increase_PAL_influence
+		y = 1
+		cost = 10
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = PAL
+					autonomy_state = autonomy_integrated_puppet
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_dlc = "Together for Victory" }
+				}
+				annex_country = {
+					target = PAL
+					transfer_troops = yes
+				}
+			}
+			add_ideas = ISR_expansion_ready
+			custom_effect_tooltip = ISR_expand_borders
+		}
+	}
+	
+	focus = {
+		id = ISR_expand_worker_rights
+		icon = GFX_focus_YUG_pan_slavic_congress
+		prerequisite = { focus = ISR_PAL_friendship }
+		relative_position_id = ISR_PAL_friendship
+		y = 1
+		x = 2
+		cost = 10
+		completion_reward = {
+			add_ideas = ISR_worker_rights
+		}
+	}
+	
+	focus = {
+		id = ISR_socialise_economy
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = ISR_expand_worker_rights }
+		relative_position_id = ISR_expand_worker_rights
+		y = 1
+		cost = 10
+		completion_reward = {
+			add_ideas = ISR_collectivised_society
+			add_ideas = closed_economy
+		}
+	}
+	
+	focus = {
+		id = ISR_expand_means
+		icon = GFX_focus_generic_industry_3
+		prerequisite = { focus = ISR_socialise_economy }
+		relative_position_id = ISR_socialise_economy
+		y = 1
+		x = -1
+		cost = 10
+		completion_reward = {
+			454 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_nationalise_arms
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ISR_socialise_economy }
+		relative_position_id = ISR_socialise_economy
+		y = 1
+		x = 1
+		cost = 10
+		completion_reward = {
+			454 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = arms_factory
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_socialist_science
+		icon = GFX_focus_research
+		prerequisite = { focus = ISR_expand_means }
+		prerequisite = { focus = ISR_nationalise_arms }
+		relative_position_id = ISR_expand_means
+		y = 1
+		x = 1
+		cost = 10
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	## Zionist Path - Copy everything after here to V2
+	
+	focus = {
+		id = ISR_push_USA_recognition
+		icon = GFX_focus_ISR_USA_friendship
+		prerequisite = { focus = ISR_elections_1936 }
+		available = {
+			has_government = zionism
+		}
+		mutually_exclusive = { focus = ISR_british_cooperation }
+		cancel_if_invalid = yes
+		
+		relative_position_id = ISR_elections_1936
+		x = -10
+		y = 1
+		
+		cost = 5
+		
+		completion_reward = {
+			USA = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = ISR_diplo_focus
+				}
+			}
+			ISR = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = took_stand_for_us
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_ask_industry_help
+		icon = GFX_focus_generic_industry_2
+		prerequisite = { focus = ISR_push_USA_recognition }
+		
+		relative_position_id = ISR_push_USA_recognition
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			add_ideas = {
+				ISR_USA_industry_investment
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 3
+				category = industry
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_military_training
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = ISR_ask_industry_help }
+		
+		relative_position_id = ISR_ask_industry_help
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			army_experience = 50
+		}
+	}
+	
+	focus = {
+		id = ISR_british_cooperation
+		icon = GFX_focus_chi_british_cooperation
+		prerequisite = { focus = ISR_elections_1936 }
+		available = {
+			has_government = zionism
+		}
+		mutually_exclusive = { focus = ISR_push_USA_recognition }
+		cancel_if_invalid = yes
+		
+		relative_position_id = ISR_elections_1936
+		x = -6
+		y = 1
+		
+		cost = 5
+		
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = ISR_diplo_focus
+				}
+			}
+			ISR = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = took_stand_for_us
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_brit_guarantee
+		icon = GFX_goal_tripartite_pact
+		prerequisite = { focus = ISR_british_cooperation }
+		available = {
+			ENG = {
+				has_opinion = {
+					target = ISR
+					value > 49
+				}
+			}
+		}
+		
+		relative_position_id = ISR_british_cooperation
+		y = 1
+		
+		cost = 5
+		
+		completion_reward = {
+			ENG = {
+				give_guarantee = ISR
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_join_allies
+		icon = GFX_focus_chi_british_cooperation
+		prerequisite = { focus = ISR_brit_guarantee }
+		available = {
+			ENG = {
+				is_faction_leader = yes
+				has_opinion = {
+					target = ISR
+					value > 99
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		
+		relative_position_id = ISR_brit_guarantee
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			ENG = {
+				add_ai_strategy = {
+					type = alliance
+					id = ISR
+					value = 200
+				}
+				add_to_faction = ISR
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_jewish_brigade
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = ISR_join_allies }
+		available = {
+			is_in_faction_with = ENG
+		}
+		cancel_if_invalid = yes
+		
+		relative_position_id = ISR_join_allies
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			custom_effect_tooltip = ISR_jewish_brigade_tt
+			add_manpower = -27300
+			hidden_effect = {
+				load_oob = ISR_jewish_brigade
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_European_Jewish_Refugees
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = ISR_jewish_brigade }
+		relative_position_id = ISR_jewish_brigade
+		y = 1
+
+		cost = 10
+
+		ai_will_do = { factor = 10 }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = ISR_European_Jewish_Refugees_tt
+			hidden_effect = {
+				454 = { add_manpower = 900000}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_crush_PAL
+		icon = GFX_focus_ISR_crush_PAL
+		prerequisite = {
+			focus = ISR_british_cooperation
+			focus = ISR_push_USA_recognition
+		}
+		
+		relative_position_id = ISR_british_cooperation
+		x = -2
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			create_wargoal = {
+				target = PAL
+				type = annex_everything
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_new_land_infrastructure
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ISR_crush_PAL }
+		available = {
+			ISR = {
+				has_full_control_of_state = 797
+				has_full_control_of_state = 798
+			}
+		}
+		
+		relative_position_id = ISR_crush_PAL
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			798 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			797 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_centralised_civ_industry
+		icon = GFX_focus_generic_industry_3
+		prerequisite = { focus = ISR_new_land_infrastructure }
+		mutually_exclusive = { focus = ISR_centralised_mil_industry }
+		
+		relative_position_id = ISR_new_land_infrastructure
+		y = 1
+		x = -2
+		
+		cost = 10
+		
+		completion_reward = {
+			454 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_dispersed_mil_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ISR_centralised_civ_industry }
+		
+		relative_position_id = ISR_centralised_civ_industry
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			797 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			798 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_centralised_mil_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ISR_new_land_infrastructure }
+		mutually_exclusive = { focus = ISR_centralised_civ_industry }
+		
+		relative_position_id = ISR_new_land_infrastructure
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			454 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = arms_factory
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_dispersed_civ_industry
+		icon = GFX_focus_generic_industry_2
+		prerequisite = { focus = ISR_centralised_mil_industry }
+		
+		relative_position_id = ISR_centralised_mil_industry
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			797 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			798 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_focus_outwards
+		icon = GFX_focus_ISR_expand_borders
+		prerequisite = {
+			focus = ISR_dispersed_civ_industry
+			focus = ISR_dispersed_mil_industry
+		}
+		
+		relative_position_id = ISR_dispersed_civ_industry
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			add_ideas = ISR_expansion_ready
+			custom_effect_tooltip = ISR_expand_borders
+		}
+	}
+	
+	focus = {
+		id = ISR_zion_science
+		icon = GFX_focus_research
+		prerequisite = {
+			focus = ISR_dispersed_civ_industry
+			focus = ISR_dispersed_mil_industry
+		}
+		
+		relative_position_id = ISR_dispersed_mil_industry
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	## Revisionist Zionist Path
+	
+	focus = {
+		id = ISR_mediterranean_diplomacy
+		icon = GFX_focus_befriend_italy
+		prerequisite = { focus = ISR_elections_1936 }
+		available = {
+			has_government = revision_zionism
+		}
+		mutually_exclusive = { focus = ISR_go_alone }
+		cancel_if_invalid = yes
+		
+		relative_position_id = ISR_elections_1936
+		y = 1
+		x = 6
+		
+		cost = 5
+		
+		completion_reward = {
+			ITA = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = ISR_diplo_focus
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_anti_axis
+		icon = GFX_focus_ISR_anti_axis
+		prerequisite = { focus = ISR_mediterranean_diplomacy }
+		
+		relative_position_id = ISR_mediterranean_diplomacy
+		y = 1
+		
+		cost = 5
+		
+		completion_reward = {
+			ITA = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = ISR_anti_semitism
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_go_alone
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ISR_elections_1936 }
+		available = {
+			has_government = revision_zionism
+		}
+		mutually_exclusive = { focus = ISR_mediterranean_diplomacy }
+		cancel_if_invalid = yes
+		
+		relative_position_id = ISR_mediterranean_diplomacy
+		x = 4
+		
+		
+	}
+	
+	## Expansion Path
+	
+	focus = {
+		id = ISR_expand_borders_conflict
+		icon = GFX_focus_ISR_expand_borders
+		available = {
+			has_idea = ISR_expansion_ready
+		}
+		
+		x = 5
+		y = 0
+		
+		cost = 10
+		
+		completion_reward = {
+			custom_effect_tooltip = ISR_border_conflict_enabled
+			ENG = {
+				country_event = { days = 1 id = ISR_britain.1 }
+			}
+			EGY = {
+				add_ai_strategy = {
+					type = prepare_for_war
+					id = ISR
+					value = 200
+				}
+			}
+			JOR = {
+				add_ai_strategy = {
+					type = prepare_for_war
+					id = ISR
+					value = 200
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_admin_sinai_jordan
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = ISR_expand_borders_conflict }
+		available = {
+			has_full_control_of_state = 453
+			has_full_control_of_state = 455
+		}
+		
+		relative_position_id = ISR_expand_borders_conflict
+		x = -1
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			ISR = {
+				add_state_core = 453
+				add_state_core = 455
+			}	
+		}
+	}
+	
+	focus = {
+		id = ISR_claim_kingdom_david
+		icon = GFX_focus_ISR_claim_kingdom_david
+		prerequisite = { focus = ISR_expand_borders_conflict }
+		available = {
+			NOT = {
+				has_government = non_zionism
+			}
+			OR = {
+				has_full_control_of_state = 453
+				has_full_control_of_state = 455
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = SYR
+				country_exists = LEB
+			}
+		}
+		
+		relative_position_id = ISR_expand_borders_conflict
+		x = 1
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			LEB = {
+				country_event = { days = 1 id = levant.1 }
+			}
+			
+			SYR = {
+				country_event = { days = 1 id = levant.2 }
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_admin_kingdom_david
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = ISR_claim_kingdom_david }
+		available = {
+			has_full_control_of_state = 553
+			has_full_control_of_state = 554
+		}
+		
+		relative_position_id = ISR_claim_kingdom_david
+		x = -2
+		y = 1
+		
+		cost = 5
+		
+		completion_reward = {
+			ISR = {
+				add_state_core = 553
+				add_state_core = 554
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_prepare_middle_east_hegemony
+		icon = GFX_focus_ISR_prepare_middle_east_hegemony
+		prerequisite = { focus = ISR_claim_kingdom_david }
+		available = {
+			has_full_control_of_state = 553
+		}
+		
+		relative_position_id = ISR_claim_kingdom_david
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			IF = {
+				limit = {
+					country_exists = IRQ
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = IRQ
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = SYR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SYR
+				}
+			}
+			IF = {
+				limit = {
+					country_exists = KUW
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = KUW
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_finish_EGY
+		icon = GFX_focus_ISR_finish_EGY
+		prerequisite = {
+			focus = ISR_prepare_middle_east_hegemony
+		}
+		prerequisite = {
+			focus = ISR_admin_kingdom_david
+		}
+		available = {
+			OR = {
+				has_idea = ISR_arabs_suppressed
+				has_idea = ISR_reinvigorate_nation
+			}
+		}
+		
+		relative_position_id = ISR_prepare_middle_east_hegemony
+		x = -1
+		y = 1
+		
+		cost = 10
+		
+		completion_reward = {
+			create_wargoal = {
+				target = EGY
+				type = annex_everything
+			}
+		}
+	}
+	
+	## Industry - From Yugo Tree
+	
+	focus = {
+		id = ISR_industrialization_program
+		icon = GFX_goal_generic_construction
+		x = 14
+		y = 7
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 80
+		}
+
+		available = {
+			has_completed_focus = ISR_elections_1936
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+
+
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_restart_haifa_foundries
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = ISR_industrialization_program }
+		x = 0
+		y = 1
+		relative_position_id = ISR_industrialization_program
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		available = {
+			has_full_control_of_state = 454
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			454 = {
+				add_resource = {
+					type = steel
+					amount = 16
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_exploit_the_middle_east_deposits
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = ISR_restart_haifa_foundries }
+		x = -3
+		y = 1
+		relative_position_id = ISR_restart_haifa_foundries
+
+		cost = 10
+
+		available = {
+			AND = {
+				has_full_control_of_state = 453
+				has_full_control_of_state = 455
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			453 = {
+				add_resource = {
+					type = oil
+					amount = 3
+				}
+			}
+			455 = {
+				add_resource = {
+					type = oil
+					amount = 16
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_develop_civilian_industry
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ISR_restart_haifa_foundries }
+		mutually_exclusive = { focus = ISR_develop_military_industry }
+		x = -1
+		y = 1
+		relative_position_id = ISR_restart_haifa_foundries
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_expand_university_jerusalem
+		icon = GFX_focus_research
+		prerequisite = { focus = ISR_develop_civilian_industry focus = ISR_develop_military_industry }
+		x = 0
+		y = 3
+		relative_position_id = ISR_industrialization_program
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			NOT = {
+				has_idea = ISR_zionists_angry
+				has_idea = ISR_arabs_suppressed
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = ISR_integrated_rail_network
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ISR_expand_university_jerusalem }
+		x = 0
+		y = 2
+		relative_position_id = ISR_develop_civilian_industry
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_improve_light_industry
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ISR_integrated_rail_network focus = ISR_improve_west_bank_rail_network }
+		x = 1
+		y = 3
+		relative_position_id = ISR_develop_civilian_industry
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_develop_israeli_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ISR_integrated_rail_network }
+		x = 0
+		y = 4
+		relative_position_id = ISR_develop_civilian_industry
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		complete_tooltip = {
+		
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 454 }
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_local_self_management
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = ISR_develop_israeli_industry }
+		x = 0
+		y = 1
+		relative_position_id = ISR_develop_israeli_industry
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			add_ideas = YUG_idea_local_self_management
+		}
+	}
+
+	focus = {
+		id = ISR_develop_military_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = ISR_restart_haifa_foundries }
+		mutually_exclusive = { focus = ISR_develop_civilian_industry }
+		x = 1
+		y = 1
+		relative_position_id = ISR_restart_haifa_foundries
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_improve_west_bank_rail_network
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = ISR_expand_university_jerusalem }
+		x = 0
+		y = 2
+		relative_position_id = ISR_develop_military_industry
+
+		cost = 10
+
+		available = {
+			OR = {
+				has_full_control_of_state = 798
+				PAL = {
+					is_puppet_of = ISR
+				}
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			797 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			798 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_expand_university_tel_aviv
+		icon = GFX_focus_research
+		prerequisite = { focus = ISR_improve_west_bank_rail_network }
+		x = 0
+		y = 4
+		relative_position_id = ISR_develop_military_industry
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = ISR_expand_haifa_foundries
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = ISR_improve_west_bank_rail_network }
+		x = 1
+		y = 3
+		relative_position_id = ISR_develop_military_industry
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 60
+		}
+
+		available = {
+			has_full_control_of_state = 454
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+
+		completion_reward = {
+			454 = {
+				add_resource = {
+					type = steel
+					amount = 4
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_central_management
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = { focus = ISR_expand_university_tel_aviv }
+		x = 0
+		y = 5
+		relative_position_id = ISR_develop_military_industry
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_ideas = YUG_idea_central_management
+		}
+	}
+
+	focus = {
+		id = ISR_expand_the_israel_arsenals
+		icon = GFX_goal_generic_build_tank
+		prerequisite = { focus = ISR_local_self_management focus = ISR_central_management }
+		x = 1
+		y = 1
+		relative_position_id = ISR_local_self_management
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		available = {
+			has_full_control_of_state = 454
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			454 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	## Military - From French Tree
+	
+	focus = {
+		id = ISR_women_in_army
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 5
+		y = 7
+		prerequisite = {}
+		mutually_exclusive = { }
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			has_war_support > 0.25
+			has_completed_focus = ISR_elections_1936
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = ISR_women_in_idf
+			set_rule = {
+				can_generate_female_aces = yes
+			}
+			add_ace = {
+				name = "Roni"
+				surname = "Zuckerman"
+				callsign = "Antek"
+				type = fighter_genius
+				is_female = yes
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_defensive_focus
+		icon = GFX_goal_generic_defence
+		mutually_exclusive = { focus = ISR_aggressive_focus }
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = { focus = ISR_women_in_army }
+		available_if_capitulated = yes
+		relative_position_id = ISR_women_in_army
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			custom_effect_tooltip = available_chief_of_army
+			show_ideas_tooltip = ISR_moshe_dayan
+			army_experience = 25
+		}
+	}
+	
+	focus = {
+		id = ISR_firepower_kills
+		icon = GFX_goal_generic_army_artillery
+		x = -1
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { focus = ISR_defensive_focus }
+		relative_position_id = ISR_defensive_focus
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { ISR_firepower }
+		}
+	}
+	
+	focus = {
+		id = ISR_infantry_focus
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = ISR_firepower_kills }
+		x = -1
+		y = 1
+		relative_position_id = ISR_firepower_kills
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_ideas = ISR_infantry_focus
+		}
+	}
+	
+	focus = {
+		id = ISR_artillery_focus
+		icon = GFX_goal_generic_army_artillery2
+		prerequisite = { focus = ISR_infantry_focus }
+		x = 0
+		y = 1
+		relative_position_id = ISR_infantry_focus
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = ISR_artillery_focus
+				bonus = 1.0
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+	focus = {
+		id = ISR_heavy_armor_focus
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ISR_artillery_focus }
+		x = 0
+		y = 1
+		relative_position_id = ISR_artillery_focus
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = ISR_heavy_armor_focus
+				bonus = 1.0
+				uses = 1
+				category = cat_heavy_armor
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_infantry_tanks
+		icon = GFX_focus_generic_combined_arms
+		x = 1
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { focus = ISR_firepower_kills }
+		mutually_exclusive = { }
+		relative_position_id = ISR_firepower_kills
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = ISR_sabra
+		}
+	}
+	
+	focus = {
+		id = ISR_fortification_focus
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = ISR_infantry_tanks }
+		x = 0
+		y = 1
+		relative_position_id = ISR_infantry_tanks
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = ISR_fortification_focus
+		}
+	}
+	
+	focus = {
+		id = ISR_fusiliers_marine
+		icon = GFX_goal_generic_amphibious_assault
+		x = 0
+		y = 2
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { focus = ISR_fortification_focus }
+		mutually_exclusive = { }
+		relative_position_id = ISR_infantry_tanks
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ISR_fusiliers_marine
+				category = tp_tech
+				category = marine_tech
+				uses = 2
+				bonus = 1
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_aggressive_focus
+		icon = GFX_goal_generic_major_war
+		mutually_exclusive = { focus = ISR_defensive_focus }
+		x = 1
+		y = 1
+		cost = 10
+		relative_position_id = ISR_women_in_army
+		available_if_capitulated = yes
+		prerequisite = { focus = ISR_women_in_army }
+		ai_will_do = {
+			factor = 0.2
+		}
+		completion_reward = {
+			custom_effect_tooltip = available_chief_of_army
+			show_ideas_tooltip = ISR_yaakov_dori
+			army_experience = 25
+		}
+	}
+	
+	focus = {
+		id = ISR_air_dominance
+		icon = GFX_goal_generic_air_fighter2
+		x = 1
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { focus = ISR_aggressive_focus }
+		relative_position_id = ISR_aggressive_focus
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { ISR_air_dominance }
+		}
+	}
+	
+	focus = {
+		id = ISR_battle_of_maneuver
+		icon = GFX_goal_generic_position_armies
+		x = -1
+		y = 1
+		prerequisite = { focus = ISR_air_dominance }
+		relative_position_id = ISR_air_dominance
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = available_theorist
+			show_ideas_tooltip = ISR_israel_tal
+		}
+	}
+	
+	focus = {
+		id = ISR_motorized_focus
+		icon = GFX_goal_generic_army_motorized
+		prerequisite = { focus = ISR_battle_of_maneuver }
+		x = 0
+		y = 1
+		relative_position_id = ISR_battle_of_maneuver
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_ideas = ISR_motorized_focus
+		}
+	}
+	
+	focus = {
+		id = ISR_light_medium_armor
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = ISR_motorized_focus }
+		x = 0
+		y = 1
+		relative_position_id = ISR_motorized_focus
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = ISR_light_medium_armor
+				bonus = 1.0
+				uses = 1
+				category = cat_light_armor
+				category = cat_medium_armor
+			}
+		}
+	}
+	
+	focus = {
+		id = ISR_cas_focus
+		icon = GFX_goal_generic_CAS
+	 	prerequisite = { 
+	 		focus = ISR_air_dominance
+	 	}
+		x = 1
+		y = 1
+		relative_position_id = ISR_air_dominance
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ISR_cas_focus
+				bonus = 1.0
+				uses = 2
+				category = cas_bomber
+			}
+		}
+	}
+	focus = {
+		id = ISR_air_ground_cooperation
+		icon = GFX_goal_generic_air_bomber
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { focus = ISR_cas_focus }
+		mutually_exclusive = { }
+		relative_position_id = ISR_cas_focus
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = ISR_air_ground_cooperation
+				category = air_doctrine
+				uses = 2
+				bonus = 1
+			}
+		}
+	}
+	focus = {
+		id = ISR_flying_artillery
+		icon = GFX_goal_poland_goal
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { focus = ISR_air_ground_cooperation }
+		relative_position_id = ISR_air_ground_cooperation
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { ISR_flying_artillery }
+		}
+	}
+	focus = {
+		id = ISR_army_reform
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { 
+			focus = ISR_light_medium_armor 
+			focus = ISR_heavy_armor_focus 
+			focus = ISR_flying_artillery
+			focus = ISR_fusiliers_marine
+		}
+		x = -1
+		y = 1
+		relative_position_id = ISR_light_medium_armor
+		cost = 10
+
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			army_experience = 10
+			add_ideas = {
+				ISR_army_reform
+			}
+		}
+	}	
+	
+	#Naval - from Japanese focus tree
+	
+	focus = {
+		id = ISR_new_naval_estimates
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 2
+		y = 14
+
+		cost = 10
+		
+		available = {
+			has_completed_focus = ISR_elections_1936
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		complete_tooltip = {
+			random_state = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					not = { has_dlc = "Man the Guns" }
+				}
+				add_tech_bonus = {
+					name = ISR_supremacy_of_the_battlefleet
+					bonus = 1.0
+					uses = 1
+					category = shbb_tech	
+				}
+			}
+			else = {
+				navy_experience = 50
+			}
+			random_owned_controlled_state = {
+				limit = {
+					ROOT = { has_full_control_of_state = PREV }
+					is_core_of = ROOT
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_carrier_warfare_experiments
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = ISR_new_naval_estimates }
+		mutually_exclusive = { focus = ISR_supremacy_of_the_battlefleet }
+		x = -1
+		y = 1
+		relative_position_id = ISR_new_naval_estimates
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = JAP_carrier_warfare_experiments
+				bonus = 1.00
+				uses = 2
+				category = cat_base_strike
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_expand_the_marines
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = ISR_carrier_warfare_experiments focus = ISR_supremacy_of_the_battlefleet }
+		x = 0
+		y = 2
+		relative_position_id = ISR_new_naval_estimates
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = ISR_expand_the_marines
+			add_tech_bonus = {
+				name = ISR_expand_the_marines
+				bonus = 1.0
+				uses = 1
+				category = marine_tech	
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_first_air_fleet
+		icon = GFX_goal_generic_navy_carrier
+		prerequisite = { focus = ISR_carrier_warfare_experiments }
+		x = 0
+		y = 2
+		relative_position_id = ISR_carrier_warfare_experiments
+
+		cost = 10
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+
+		completion_reward = {
+			add_ideas = JAP_first_air_fleet
+		}
+	}
+
+	focus = {
+		id = ISR_modern_escorts
+		icon = GFX_goal_generic_navy_anti_submarine
+		prerequisite = { focus = ISR_first_air_fleet focus = ISR_the_ultimate_battleship }
+		x = 1
+		y = 1
+		relative_position_id = ISR_first_air_fleet
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = JAP_modern_escorts
+				bonus = 1.0
+				uses = 1
+				category = dd_tech	
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_supremacy_of_the_battlefleet
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = ISR_new_naval_estimates }
+		mutually_exclusive = { focus = ISR_carrier_warfare_experiments }
+		x = 1
+		y = 1
+		relative_position_id = ISR_new_naval_estimates
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = JAP_supremacy_of_the_battlefleet
+				bonus = 1.0
+				uses = 3
+				category = bb_tech
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_the_ultimate_battleship
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ISR_supremacy_of_the_battlefleet }
+		x = 0
+		y = 2
+		relative_position_id = ISR_supremacy_of_the_battlefleet
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		bypass = {
+			AND = {
+				has_tech = heavy_battleship
+				has_tech = heavy_battleship2
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = {
+					not = { has_dlc = "Man the Guns" }
+				}
+				add_tech_bonus = {
+					name = JAP_the_ultimate_battleship
+					bonus = 3.0
+					uses = 1
+					category = shbb_tech	
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						not = { has_tech = ship_hull_super_heavy }
+					}
+					set_technology = {
+						ship_hull_super_heavy = 1
+					}
+				}
+				create_equipment_variant = {
+					name = "Sa'ar Class"
+					type = ship_hull_super_heavy_1
+					parent_version = 0
+					modules = {
+						fixed_ship_battery_slot = ship_super_heavy_battery_1
+						fixed_ship_anti_air_slot = ship_anti_air_2
+						fixed_ship_fire_control_system_slot = ship_fire_control_system_1
+						fixed_ship_radar_slot = empty
+						fixed_ship_engine_slot = heavy_ship_engine_2
+						fixed_ship_secondaries_slot = ship_secondaries_2
+						fixed_ship_armor_slot = ship_armor_shbb
+						front_1_custom_slot = ship_anti_air_1
+						front_2_custom_slot = empty
+						mid_1_custom_slot = empty
+						mid_2_custom_slot = ship_secondaries_2
+						mid_3_custom_slot = ship_secondaries_2
+						rear_1_custom_slot = ship_super_heavy_battery_1
+						rear_2_custom_slot = ship_airplane_launcher_1
+					}
+				}
+				custom_effect_tooltip = ISR_saar_tt
+				hidden_effect = {
+					add_equipment_production = {
+						equipment = {
+							type = ship_hull_super_heavy_1
+							creator = "ISR" 
+							version_name = "Sa'ar Class"
+						}
+						name = "Sa'ar" 
+						requested_factories = 1
+						progress = 0.75
+						amount = 1
+					}
+					add_equipment_production = {
+						equipment = {
+							type = ship_hull_super_heavy_1
+							creator = "ISR" 
+							version_name = "Sa'ar Class"
+						}
+						name = "Sa'ar 2" 
+						requested_factories = 1
+						progress = 0.5
+						amount = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_cruiser_modernization
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ISR_new_naval_estimates }
+		x = 3
+		y = 1
+		relative_position_id = ISR_new_naval_estimates
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = JAP_cruiser_modernization
+				bonus = 3.0
+				uses = 1
+				category = cl_tech	
+				category = ca_tech	
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_long_lance_torpedoes
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = ISR_cruiser_modernization }
+		x = 0
+		y = 1
+		relative_position_id = ISR_cruiser_modernization
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 4
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+
+		completion_reward = {
+			add_ideas = the_long_lance
+		}
+	}
+
+	focus = {
+		id = ISR_torpedo_cruisers
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ISR_long_lance_torpedoes }
+		x = 0
+		y = 1
+		relative_position_id = ISR_long_lance_torpedoes
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 2
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = {
+					not = { has_dlc = "Man the Guns" }
+				}
+				set_technology = { torpedo_cruiser = 1 }
+			}
+			else = {
+				set_technology = { torpedo_cruiser_mtg = 1 }
+			}
+		}
+	}
+	
+	## From Akfiz's Israel mod
+	focus = {
+		id = ISR_Vigilant_and_Always_Ready
+		icon = GFX_focus_generic_little_entente
+		available = {
+			has_completed_focus = ISR_elections_1936
+		}
+		x = 1
+		y = 0
+
+		cost = 10
+
+		ai_will_do = { factor = 20 }
+
+		completion_reward = {
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = ISR_IWI
+		}
+	}
+
+	focus = {
+		id = ISR_African_Jewish_Refugees
+		icon = GFX_focus_prc_infiltration
+		prerequisite = { focus = ISR_Vigilant_and_Always_Ready }
+		relative_position_id = ISR_Vigilant_and_Always_Ready
+		y = 1
+
+		cost = 10
+
+		ai_will_do = { factor = 10 }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = ISR_African_Jewish_Refugees_tt
+			hidden_effect = {
+				454 = { add_manpower = 700000}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_Russian_Jewish_Population_Exchange
+		icon = GFX_goal_molotov_ribbentrop_pact
+		prerequisite = { focus = ISR_African_Jewish_Refugees }
+		relative_position_id = ISR_African_Jewish_Refugees
+		y = 1
+
+		cost = 10
+
+		ai_will_do = { factor = 10 }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			custom_effect_tooltip = ISR_Russian_Jewish_Population_Exchange_tt
+			hidden_effect = {
+				454 = { add_manpower = 800000}
+			}
+		}
+	}
+
+	focus = {
+		id = ISR_fortify_the_borders
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = ISR_Russian_Jewish_Population_Exchange }
+		y = 1
+		relative_position_id = ISR_Russian_Jewish_Population_Exchange
+		cost = 10
+
+		available_if_capitulated = no
+
+		available = {
+			454 = { is_controlled_by = ISR }
+		}
+
+		completion_reward = {
+			454 = {
+				add_building_construction = {
+					type = bunker
+					province = 1015
+					level = 3
+					instant_build = yes
+				}
+			}
+			454 = {
+				add_building_construction = {
+					type = bunker
+					province = 11970
+					level = 3
+					instant_build = yes
+				}
+			}
+			454 = {
+				add_building_construction = {
+					type = bunker
+					province = 4088
+					level = 3
+					instant_build = yes
+				}
+			}
+			454 = {
+				add_building_construction = {
+					type = bunker
+					province = 1065
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+#End of focuses 
+ }

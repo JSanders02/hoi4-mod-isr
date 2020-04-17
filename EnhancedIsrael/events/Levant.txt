@@ -1,0 +1,61 @@
+add_namespace = levant
+
+# Israel claims Lebanon
+country_event = {
+	id = levant.1
+	title = levant.1.t
+	desc = levant.1.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = { # Accept
+		name = levant.1.a
+		ai_chance = {
+			factor = 20
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.4 }
+		}
+	}
+	
+	option = { # Refuse
+		name = levant.1.b
+		ai_chance = {
+			factor = 60
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.3 }
+		}
+	}
+}
+
+# Israel claims Damascus
+country_event = {
+	id = levant.2
+	title = levant.2.t
+	desc = levant.2.d
+	picture = GFX_report_event_generic_read_write
+	
+	is_triggered_only = yes
+	
+	option = { # Accept
+		name = levant.2.a
+		ai_chance = {
+			factor = 40
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.6 }
+		}
+	}
+	
+	option = { # Refuse
+		name = levant.2.b
+		ai_chance = {
+			factor = 40
+		}
+		ISR = {
+			country_event = { days = 1 id = israel.5 }
+		}
+	}
+}

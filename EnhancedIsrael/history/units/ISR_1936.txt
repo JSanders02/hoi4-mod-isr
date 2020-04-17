@@ -1,0 +1,92 @@
+division_template = {
+	name = "IDF Hativa"
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 0 y = 3 }
+		infantry = { x = 0 y = 4 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 1 y = 3 }
+		infantry = { x = 1 y = 4 }
+	}
+	support = {
+       	engineer = { x = 0 y = 0 }
+       	artillery = { x = 0 y = 1 }
+	}
+}
+
+division_template = {
+	name = "IDF Garrison"
+	
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	priority = 0
+}
+
+division_template = {
+	name = "IDF Armoured Corp"
+	
+	regiments = {
+		light_armor = { x = 0 y = 0 }
+		light_armor = { x = 0 y = 1 }
+		light_armor = { x = 0 y = 2 }
+		motorized = { x = 1 y = 0}
+		motorized = { x = 1 y = 1}
+	}
+}
+
+# Jerusalem
+
+units = {
+	division = {
+		name = "1. IDF Jerusalem"
+		location = 13237
+		division_template = "IDF Hativa"
+		start_experience_factor = 0.5
+		start_equipment_factor = 1
+	}
+	
+	division = {
+		name = "2. IDF Jerusalem"
+		location = 13237
+		division_template = "IDF Hativa"
+		start_experience_factor = 0.5
+		start_equipment_factor = 1
+	}
+	
+	division = {
+		name = "3. IDF Jerusalem"
+		location = 13237
+		division_template = "IDF Hativa"
+		start_experience_factor = 0.3
+		start_equipment_factor = 1
+	}
+	
+	# Tel Aviv
+	
+	division = {
+		name = "1. IDF Tel Aviv"
+		location = 4206
+		division_template = "IDF Hativa"
+		start_experience_factor = 0.2
+		start_equipment_factor = 1
+	}
+}
+
+air_wings = {
+	454 = {
+		fighter_equipment_0 = {
+			owner = "ISR"
+			amount = 20
+		}
+	}
+}
