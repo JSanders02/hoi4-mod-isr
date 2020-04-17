@@ -301,6 +301,9 @@ country_event = {
 	
 	option = {
 		name = israel.9.a
+		remove_ideas = {
+			ISR_arabs_revolt
+		}
 		add_ideas = {
 			ISR_reinvigorate_nation
 		}

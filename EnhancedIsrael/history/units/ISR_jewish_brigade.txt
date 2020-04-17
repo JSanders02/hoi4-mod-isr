@@ -42,7 +42,12 @@ units = {
 		division_template = "Jewish Brigade"
 		start_experience_factor = 0.75
 		start_equipment_factor = 1
-		force_equipment_variants = { infantry_equipment_1 = { owner = "ENG" } }
+		force_equipment_variants = { 
+			infantry_equipment_1 = { owner = "ENG" } 
+			artillery_equipment_1 = { owner = "ENG" }
+			motorized_equipment_1 = { owner = "ENG" }
+			support_equipment_1 = { owner = "ENG" }
+		}
 	}
 	
 	division = {
@@ -51,5 +56,10 @@ units = {
 		division_template = "Jewish Brigade"
 		start_experience_factor = 0.75
 		start_equipment_factor = 1
-		force_equipment_variants = { infantry_equipment_1 = { owner = "ENG" } }
+		force_equipment_variants = { 
+			infantry_equipment_1 = { owner = "ENG" } 
+			artillery_equipment_1 = { owner = "ENG" }
+			motorized_equipment_1 = { owner = "ENG" }
+			support_equipment_1 = { owner = "ENG" }
+		}
 	}
