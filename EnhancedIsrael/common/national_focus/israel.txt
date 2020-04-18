@@ -2152,7 +2152,7 @@ focus_tree = {
 	focus = {
 		id = ISR_modern_escorts
 		icon = GFX_goal_generic_navy_anti_submarine
-		prerequisite = { focus = ISR_first_air_fleet focus = ISR_the_ultimate_battleship }
+		prerequisite = { focus = ISR_first_air_fleet }
 		x = 1
 		y = 1
 		relative_position_id = ISR_first_air_fleet
@@ -2204,103 +2204,6 @@ focus_tree = {
 				bonus = 1.0
 				uses = 3
 				category = bb_tech
-			}
-		}
-	}
-
-	focus = {
-		id = ISR_the_ultimate_battleship
-		icon = GFX_goal_generic_navy_battleship
-		prerequisite = { focus = ISR_supremacy_of_the_battlefleet }
-		x = 0
-		y = 2
-		relative_position_id = ISR_supremacy_of_the_battlefleet
-
-		cost = 10
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		bypass = {
-			AND = {
-				has_tech = heavy_battleship
-				has_tech = heavy_battleship2
-			}
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		completion_reward = {
-			if = {
-				limit = {
-					not = { has_dlc = "Man the Guns" }
-				}
-				add_tech_bonus = {
-					name = JAP_the_ultimate_battleship
-					bonus = 3.0
-					uses = 1
-					category = shbb_tech	
-				}
-			}
-			else = {
-				if = {
-					limit = {
-						not = { has_tech = ship_hull_super_heavy }
-					}
-					set_technology = {
-						ship_hull_super_heavy = 1
-					}
-				}
-				create_equipment_variant = {
-					name = "Sa'ar Class"
-					type = ship_hull_super_heavy_1
-					parent_version = 0
-					modules = {
-						fixed_ship_battery_slot = ship_super_heavy_battery_1
-						fixed_ship_anti_air_slot = ship_anti_air_2
-						fixed_ship_fire_control_system_slot = ship_fire_control_system_1
-						fixed_ship_radar_slot = empty
-						fixed_ship_engine_slot = heavy_ship_engine_2
-						fixed_ship_secondaries_slot = ship_secondaries_2
-						fixed_ship_armor_slot = ship_armor_shbb
-						front_1_custom_slot = ship_anti_air_1
-						front_2_custom_slot = empty
-						mid_1_custom_slot = empty
-						mid_2_custom_slot = ship_secondaries_2
-						mid_3_custom_slot = ship_secondaries_2
-						rear_1_custom_slot = ship_super_heavy_battery_1
-						rear_2_custom_slot = ship_airplane_launcher_1
-					}
-				}
-				custom_effect_tooltip = ISR_saar_tt
-				hidden_effect = {
-					add_equipment_production = {
-						equipment = {
-							type = ship_hull_super_heavy_1
-							creator = "ISR" 
-							version_name = "Sa'ar Class"
-						}
-						name = "Sa'ar" 
-						requested_factories = 1
-						progress = 0.75
-						amount = 1
-					}
-					add_equipment_production = {
-						equipment = {
-							type = ship_hull_super_heavy_1
-							creator = "ISR" 
-							version_name = "Sa'ar Class"
-						}
-						name = "Sa'ar 2" 
-						requested_factories = 1
-						progress = 0.5
-						amount = 1
-					}
-				}
 			}
 		}
 	}
