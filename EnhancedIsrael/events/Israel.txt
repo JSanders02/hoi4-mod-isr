@@ -73,7 +73,7 @@ country_event = {
 	option = {
 		name = israel.3.a
 		create_wargoal = {
-			type = annex_everything
+			type = puppet_wargoal_focus
 			target = LEB
 		}
 	}
@@ -109,7 +109,7 @@ country_event = {
 	option = {
 		name = israel.5.a
 		create_wargoal = {
-			type = annex_everything
+			type = puppet_wargoal_focus
 			target = SYR
 		}
 	}
@@ -202,6 +202,31 @@ country_event = {
 		name = israel.8.a
 		set_country_flag = ISR_arab_revolt_ignited
 		ARA = {
+			hidden_effect = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_1
+					amount = 2000
+					producer = ARA
+				}
+				
+				add_equipment_to_stockpile = {
+					type = support_equipment_1
+					amount = 1000
+					producer = ARA
+				}
+				
+				add_equipment_to_stockpile = {
+					type = CAS_equipment_1
+					amount = 200
+					producer = ARA
+				}
+				
+				add_equipment_to_stockpile = {
+					type = fighter_equipment_0
+					amount = 200
+					producer = ARA
+				}
+			}
 			IF = {
 				limit = {
 					ISR = {

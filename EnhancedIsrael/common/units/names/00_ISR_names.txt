@@ -1,0 +1,52 @@
+ISR = {
+		submarine = {
+		prefix = "INS"
+		generic = { "Submarine" }
+		unique = {
+			"Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+		}
+	}
+	destroyer = {
+		prefix = "INS"
+		generic = { "Destroyer"	}
+		unique = {
+			"Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+		}
+	}
+	light_cruiser = {
+		prefix = "INS"
+		generic = { "Light Cruiser" }
+		unique = {
+			"Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+		}
+	}
+	heavy_cruiser = {
+		prefix = "INS"
+		generic = { "Heavy Cruiser" }
+		unique = {
+			"Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+        }
+	}
+	battle_cruiser = {
+        prefix = "INS"
+        generic = { "Battlecruiser" }
+        unique = {
+            "Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+        }
+    }
+    battleship = {
+        prefix = "INS"
+        generic = { "Battleship" }
+        unique = {
+           "Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+        }
+    }
+	carrier = {
+		prefix = "INS"
+		generic = { "Carrier" }
+		unique = {
+			"Eilat" "Lahav" "Hanit" "Romach" "Keshet" "Hetz" "Kidon" "Tarshish" "Yaffo" "Herev" "Sufa" "Dolphin" "Livyathan" "Tekumah" "Tanin" "Rahav" "Drakon"
+			
+		}
+	}
+}

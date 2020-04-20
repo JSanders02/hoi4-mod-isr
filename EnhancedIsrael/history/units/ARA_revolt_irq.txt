@@ -45,7 +45,7 @@ units = {
 		location = 2097
 		division_template = "Alfurqat Almasha"	
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.7
+		start_equipment_factor = 1
 
 	}
 	division = {
@@ -57,7 +57,7 @@ units = {
 		location = 10106
 		division_template = "Alfurqat Aljabalia"	
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.7
+		start_equipment_factor = 1
 
 	}
 	division = {
@@ -69,7 +69,7 @@ units = {
 		location = 2097
 		division_template = "Alfurqat Almasha"	
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.7
+		start_equipment_factor = 1
 
 	}
 	division = {
@@ -81,7 +81,7 @@ units = {
 		location = 1631
 		division_template = "Alfurqat Almasha"	
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.7
+		start_equipment_factor = 1
 
 	}
 	division = {
@@ -93,17 +93,32 @@ units = {
 		location = 2097
 		division_template = "Alfurqat Almasha"	
 		start_experience_factor = 0.2
-		start_equipment_factor = 0.7
+		start_equipment_factor = 1
 
 	}
-}
+	division = {
+		#name = "5 Alfurqat"
+		division_name = {    # New syntax for compatibility with name lists
+			is_name_ordered = yes
+			name_order = 6
+		}
+		location = 2097
+		division_template = "Alfurqat Almasha"	
+		start_experience_factor = 0.2
+		start_equipment_factor = 1
 
+	}
+	division = {
+		#name = "5 Alfurqat"
+		division_name = {    # New syntax for compatibility with name lists
+			is_name_ordered = yes
+			name_order = 7
+		}
+		location = 2097
+		division_template = "Alfurqat Almasha"	
+		start_experience_factor = 0.2
+		start_equipment_factor = 1
 
-air_wings = {
-	### Royal Iraqi Air Force (RIrAF)
-	291 = {
-		CAS_equipment_1 =  { owner = "ARA"  amount = 40 }			# 1st Squadron -- Hawker Nisr, Northrup 8A-4
-		fighter_equipment_0 =  { owner = "ARA"  amount = 24 }		# 2nd Squadron -- Gladiator, Breda Ba.65
 	}
 }
 

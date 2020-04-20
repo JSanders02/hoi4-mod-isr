@@ -834,9 +834,35 @@ focus_tree = {
 		
 		completion_reward = {
 			custom_effect_tooltip = ISR_border_conflict_enabled
-			ENG = {
-				country_event = { days = 1 id = ISR_britain.1 }
+			IF = {
+				limit = {
+					OR = {
+						ENG = {
+							has_full_control_of_state = 453
+						}
+						EGY = {
+							has_full_control_of_state = 453
+						}
+					}
+				}
+				ENG = {
+					country_event = { days = 1 id = ISR_britain.1 }
+				}
 			}
+			
+			ELSE = {
+				random_country = {
+					limit = { owns_state = 453 }
+					ISR = {
+						create_wargoal = {
+							type = take_core_state
+							target = PREV
+							generator = { 453 }
+						}
+					}
+				}
+			}
+			
 			EGY = {
 				add_ai_strategy = {
 					type = prepare_for_war
