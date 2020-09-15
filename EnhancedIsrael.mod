@@ -10,4 +10,5 @@ tags={
 picture="IsraelFlag.png"
 name="Enhanced Israel"
 supported_version="1.9.*"
-remote_file_id="2012437883"
+path="C:/Users/Jacks/Documents/Paradox Interactive/Hearts of Iron IV/mod/EnhancedIsrael"
+remote_file_id="2229202239"
