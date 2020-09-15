@@ -2,7 +2,7 @@
 state={
 	id=454
 	name="Israel" # Israel
-	manpower = 4356000
+	manpower = 2370000
 	
 	state_category = metropolis
 

@@ -1,4 +1,4 @@
-version="1.9"
+version="1.0.1"
 tags={
 	"Alternative History"
 	"Map"
@@ -8,6 +8,5 @@ tags={
 	"Events"
 }
 picture="IsraelFlag.png"
-name="Enhanced Israel"
+name="Enhanced Israel - Dev version"
 supported_version="1.9.*"
-remote_file_id="2012437883"
