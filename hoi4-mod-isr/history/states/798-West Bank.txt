@@ -2,7 +2,7 @@
 state={
 	id=798
 	name="West Bank"
-	manpower = 1600000
+	manpower = 800000
 	
 	state_category = town
 

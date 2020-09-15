@@ -2,7 +2,7 @@
 state={
 	id=797
 	name="Gaza Strip"
-	manpower = 908000
+	manpower = 459000
 	
 	state_category = rural
 
